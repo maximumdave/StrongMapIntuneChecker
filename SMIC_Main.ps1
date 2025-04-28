@@ -99,6 +99,10 @@ function DC_Role {
     Get-And-Show-RegistryValue -Path $schannelPath -Name "CertificateMappingMethods"
     Get-And-Show-RegistryValue -Path $kdcPath -Name "CertificateBackdatingCompensation"
     Get-And-Show-RegistryValue -Path $kdcPath -Name "UseSubjectAltName"
+
+    #Restart KDC to apply changes
+    Write-host "Restarting KDC service..."
+    Restart-service KDC
 }
 
 function CA_Role {
@@ -163,6 +167,7 @@ function IntuneConnector_Role {
         Write-Host "Certificate Connector for Microsoft Intune not found or connector name has changed from 'Certificate Connector for Microsoft Intune'."
     }
 }
+
 
 function NDES_Role {
     Write-Host "NDES Server Configuration..."
